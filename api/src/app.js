@@ -3,13 +3,17 @@ const express = require("express");
 const morgan = require("morgan");
 const clients = require("./routes/clientsRoutes.js");
 const products = require("./routes/productsRoutes.js");
+const cors = require("cors");
 
 //code to create server
 const server = express();
 
 //middlewares
-server.use(morgan("dev"));
 server.use(express.json());
+server.use(morgan("dev"));
+server.use(cors());
+
+//Routes
 server.use("/clients", clients);
 server.use("/products", products);
 
