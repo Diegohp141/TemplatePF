@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { useDispatch } from "react-redux";
+import { addProduct } from "./redux/slices/productSlice";
+import { addItem } from "./redux/slices/cartSlice";
 
 function App() {
+  const dispatch = useDispatch();
+
+  const handlerProducts = (e) => {
+    e.preventDefault();
+    dispatch(addProduct("product"));
+  };
+
+  const handlerCart = (e) => {
+    e.preventDefault();
+    dispatch(addItem("item"));
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Template PF</h1>
+      <button onClick={handlerProducts}>Create product</button>
+      <button onClick={handlerCart}>Add to cart</button>
     </div>
   );
 }
